@@ -1,7 +1,8 @@
-"use client"
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import useAuth from '../hooks/useAuth';
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
 
 export default function Home() {
   const { user, loading } = useAuth();
@@ -10,13 +11,13 @@ export default function Home() {
   useEffect(() => {
     if (!loading) {
       if (user) {
-        router.push('/dashboard'); // Redirect to dashboard if logged in
+        router.push("/dashboard");
       } else {
-        router.push('/login'); // Redirect to login if not logged in
+        router.push("/onboarding");
       }
     }
   }, [user, loading, router]);
 
-  if (loading) return <div>Loading...</div>;
-  return null; // This page won’t render content
+  if (loading) return <div className="flex items-center justify-center h-screen">Loading...</div>;
+  return null;
 }
